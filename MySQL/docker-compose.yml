@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    working_dir: /banco
+    volumes:
+      - "./banco:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: senharoot
+    ports:
+      - 3306:3306
