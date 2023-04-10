@@ -95,24 +95,26 @@ END;
 
 CREATE PROCEDURE usp_Retira_Funcionario_Projeto(IN funcionario INT, IN projeto INT)
 BEGIN
-    SET @horas_no_projeto = (SELECT tfp.horas_trabalhadas FROM tbl_funcionarios_projetos tfp WHERE tfp.funcionario_id = funcionario AND tfp.projeto_id = projeto);
-    DELETE FROM tbl_funcionarios_projetos WHERE funcionario_id = funcionario AND projeto_id = projeto;
-    CALL usp_Aumenta_Horas_Livres(funcionario, @horas_no_projeto); 
+    IF (SELECT tfp.horas_trabalhadas FROM tbl_funcionarios_projetos tfp WHERE tfp.funcionario_id = funcionario AND tfp.projeto_id = projeto) > 0 THEN
+        SET @horas_no_projeto = (SELECT tfp.horas_trabalhadas FROM tbl_funcionarios_projetos tfp WHERE tfp.funcionario_id = funcionario AND tfp.projeto_id = projeto);
+        DELETE FROM tbl_funcionarios_projetos WHERE funcionario_id = funcionario AND projeto_id = projeto;
+        CALL usp_Aumenta_Horas_Livres(funcionario, @horas_no_projeto);
+    END IF;
 END;
 
 CREATE PROCEDURE usp_Calcula_Prazo_Estimado(IN projeto INT)
 BEGIN
     SET @soma_horas_semanais = (SELECT SUM(tfp.horas_trabalhadas) FROM tbl_funcionarios_projetos tfp WHERE tfp.projeto_id = projeto);
-    SET @ultimo_calculo = (SELECT tp.ultimo_calculo_hora FROM tbl_projetos WHERE tp.id = projeto);
-    SET @dias_apos_ultimo_calculo = (SELECT DATEDIFF(DATE(NOW()), @ultimo_calculo));
+    SET @ultimo_calculo = (SELECT tp.ultimo_calculo_hora FROM tbl_projetos tp WHERE tp.id = projeto);
+    SET @dias_apos_ultimo_calculo = (DATEDIFF(NOW(), @ultimo_calculo));
     SET @semanas_completas = (SELECT @dias_apos_ultimo_calculo DIV 7);
-    SET @horas_realizadas = (SELECT tp.horas_realizadas FROM tbl_projetos tp WHERE tp.id = projeto)
-                            + (SELECT @semanas_completas * @soma_horas_semanais);
-    UPDATE tbl_projetos tp SET tp.horas_realizadas = horas_realizadas WHERE tp.id = projeto;
-    SET @horas_restantes = (SELECT tp.horas_necessarias FROM tbl_projetos tp WHERE tp.id = projeto)
-                            - @horas_realizadas;
+    SET @horas_realizadas = (SELECT (SELECT tp.horas_realizadas FROM tbl_projetos tp WHERE tp.id = projeto)
+                        + (SELECT @semanas_completas * @soma_horas_semanais));
+    UPDATE tbl_projetos tp SET tp.horas_realizadas = @horas_realizadas WHERE tp.id = projeto;
+    SET @horas_restantes = (SELECT (SELECT tp.horas_necessarias FROM tbl_projetos tp WHERE tp.id = projeto)
+                            - @horas_realizadas);
     SET @semanas_restantes = (SELECT @horas_restantes DIV @soma_horas_semanais);
-    SET @dias_restantes = @semanas_restantes * 7;
+    SET @dias_restantes = (SELECT @semanas_restantes * 7);
     SET @novo_prazo = DATE_ADD(@ultimo_calculo, INTERVAL @dias_restantes DAY);
     UPDATE tbl_projetos tp SET tp.prazo_estimado = @novo_prazo WHERE tp.id = projeto;
     UPDATE tbl_projetos tp SET tp.data_atualizacao = now() WHERE tp.id = projeto;

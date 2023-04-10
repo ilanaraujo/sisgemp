@@ -43,7 +43,7 @@ BEGIN
     SET @funcionario = (SELECT JSON_EXTRACT(json_info, '$.funcionario'));
     SET @projeto = (SELECT JSON_EXTRACT(json_info, '$.projeto'));
     SET @horas = (SELECT JSON_EXTRACT(json_info, '$.horas'));
-    CALL usp_Insere_Funcionario_Projeto(@funcionario, @projeto);
+    CALL usp_Insere_Funcionario_Projeto(@funcionario, @projeto, @horas);
 END;
 
 CREATE PROCEDURE usp_Retira_Funcionario_Projeto_JSON(IN json_info JSON)

@@ -1,5 +1,6 @@
 -- Cria o banco Empresa se o docker não tiver criado e o utiliza para as operações
 CREATE DATABASE IF NOT EXISTS empresa;
+
 USE empresa;
 
 -- Cria as tabelas
