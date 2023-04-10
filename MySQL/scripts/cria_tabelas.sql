@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS tbl_funcionarios(
   cpf varchar(11) UNIQUE,
   rg varchar(9) UNIQUE,
   sexo_id int,
-  nascimento date,
+  nascimento datetime,
   possui_cnh boolean,
   salario float,
   departamento_id int,
@@ -48,11 +48,12 @@ CREATE TABLE IF NOT EXISTS tbl_projetos (
   id int AUTO_INCREMENT UNIQUE PRIMARY KEY,
   departamento_id int,
   nome varchar(50) UNIQUE,
-  horas_para_conclusao int,
-  prazo_estimado date,
+  horas_necessarias int,
   horas_realizadas int,
-  dt_ultimo_calculo_hora date,
+  prazo_estimado date,
+  ultimo_calculo_hora date,
   supervisor_id int,
+  horas_supervisao int,
   data_criacao datetime,
   data_atualizacao datetime,
   FOREIGN KEY (departamento_id)
@@ -78,3 +79,8 @@ CREATE TABLE IF NOT EXISTS tbl_funcionarios_projetos (
     REFERENCES tbl_projetos (id)
     ON DELETE CASCADE
 );
+
+-- Insere as opções de sexo na tabela
+INSERT INTO tbl_sexos (sexo, data_criacao, data_atualizacao) VALUES ('Feminino', now(), now());
+INSERT INTO tbl_sexos (sexo, data_criacao, data_atualizacao) VALUES ('Masculino', now(), now());
+INSERT INTO tbl_sexos (sexo, data_criacao, data_atualizacao) VALUES ('Outros', now(), now());
