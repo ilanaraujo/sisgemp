@@ -1,5 +1,5 @@
 from django.db import models
-from sisgemp.departamentos.models import Departamento
+from departamentos.models import Departamento
 from datetime import datetime
 
 # Create your models here.
@@ -15,11 +15,11 @@ class Funcionario(models.Model):
     nome = models.CharField(max_length=50, unique=True)
     cpf = models.CharField(max_length=11, unique=True)
     rg = models.CharField(max_length=9, unique=True)
-    sexo_id = models.ForeignKey(Sexo, db_column='id', on_delete=models.CASCADE)
+    sexo_id = models.ForeignKey(Sexo, on_delete=models.CASCADE)
     nascimento = models.DateField()
     possui_cnh = models.BooleanField()
     salario = models.FloatField()
-    departamento_id = models.ForeignKey(Departamento, db_column='id', on_delete=models.CASCADE)
+    departamento_id = models.ForeignKey(Departamento, on_delete=models.CASCADE)
     carga_horaria_semanal = models.IntegerField()
     horas_livres = models.IntegerField()
     data_criacao = models.DateTimeField(default=datetime.now())
