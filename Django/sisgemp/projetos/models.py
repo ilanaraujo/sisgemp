@@ -21,7 +21,7 @@ class Projeto(models.Model):
 class FuncionarioProjeto(models.Model):
     id = models.IntegerField(primary_key=True)
     funcionario_id = models.ForeignKey(Funcionario, db_column='id', on_delete=models.CASCADE)
-    projeto_id = models.ForeignKey(Projeto, db_column='id', on_delete=CASCADE)
+    projeto_id = models.ForeignKey(Projeto, db_column='id', on_delete=models.CASCADE)
     horas_trabalhadas = models.IntegerField()
     data_criacao = models.DateTimeField(default=datetime.now())
     data_atualizacao = models.DateTimeField(default=datetime.now())
