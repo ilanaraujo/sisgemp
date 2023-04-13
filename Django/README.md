@@ -15,6 +15,17 @@ Para rodar o sistema, antes instale o `django` com o comando:
 ## Inicialização
 Para iniciar o sistema, vá para a pasta `/Django/sisgemp/` e execute `$ python3 manage.py runserver 0.0.0.0:8000`. Dessa forma, o sistema estará acessível no endereço localhost:8000.
 
+Antes de uśa-lo, abra o Shell do django com `$ python3 manage.py shell` e execute os seguintes comandos:
+`from funcionarios.models import Sexo`
+`sexo1 = Sexo(sexo='Feminino')`
+`sexo1.save()`
+`sexo2 = Sexo(sexo='Masculino')`
+`sexo2.save()`
+`sexo3 = Sexo(sexo='Outros')`
+`sexo3.save()`
+
+É necesário fazer isso para inserir as opções de sexo no sistema. Caso não o faça, não é possível cadastrar funcionários (que dependem desse campo) e nem criar projetos (que dependem dos funcionários).
+
 ## Uso
 
 O sistema possui as aplicações departamentos, funcionarios e projetos. Elas possuem as sequintes páginas:
