@@ -1,3 +1,5 @@
+# Manipulações no banco. Arquivo separado criado para aumentar a segurança
+
 from datetime import datetime
 from .models import Funcionario, Sexo
 from projetos.models import Projeto, FuncionarioProjeto
@@ -26,6 +28,7 @@ def cadastra_funcionario(json_info):
     except:
         print("Não foi possível cadastrar o novo funcionario")
 
+# Recupera um funcionário do banco
 def recupera_funcionario(id_funcionario):
     try:
         funcionario = Funcionario.objects.get(id=id_funcionario)
@@ -33,10 +36,12 @@ def recupera_funcionario(id_funcionario):
     except:
         return None
 
+# Recupera todos os funcionarios
 def lista_todos_funcionarios():
     funcionarios = Funcionario.objects.all()
     return funcionarios
 
+# Recupera projetos que o funcionario atua
 def lista_projetos_funcionario(id_funcionario):
     try:
         id_projetos = FuncionarioProjeto.objects.filter(funcionario = id_funcionario)
@@ -48,6 +53,7 @@ def lista_projetos_funcionario(id_funcionario):
     except:
         return None
 
+# Lista projetos que o funcionario supervisiona
 def lista_projetos_supervisionados_funcionario(id_funcionario):
     try:
         projetos_supervisionados = Projeto.objects.filter(supervisor = id_funcionario)
@@ -55,6 +61,7 @@ def lista_projetos_supervisionados_funcionario(id_funcionario):
     except:
         return None
 
+# Atualzia cadastro
 def edita_funcionario(id_funcionario, json_info):
     horas_livres_anteriores = Funcionario.objects.get(id=id_funcionario).horas_livres
     diferenca_carga_horaria = json_info['carga_horaria_semanal'] - horas_livres_anteriores

@@ -14,19 +14,23 @@
             <th>Salário</th>
             <th>Departamento</th>
             <th>Carga Horária Semanal</th>
-            <th>Horas Livres</th>
+            <th>Horas Disponíveis</th>
             <th>Registro</th>
             <th>Última Alteração</th>
         </tr>
     {% for funcionario in funcionarios %}
         <tr>
             <td>{{ funcionario.id }}</td>
-            <td>{{ funcionario.nome }}</td>
+            <td>{{ funcionario }}</td>
             <td>{{ funcionario.cpf }}</td>
             <td>{{ funcionario.rg }}</td>
             <td>{{ funcionario.sexo }}</td>
             <td>{{ funcionario.nascimento }}</td>
-            <td>{{ funcionario.possui_cnh }}</td>
+            {% if funcionario.possui_cnh %}
+            <td>Sim</td>
+            {% else %}
+            <td>Não</td>
+            {% endif %}
             <td>{{ funcionario.salario }}</td>
             <td>{{ funcionario.departamento }}</td>
             <td>{{ funcionario.carga_horaria_semanal }}</td>

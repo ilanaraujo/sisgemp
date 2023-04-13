@@ -26,6 +26,7 @@ def novo(request):
             'titulo':'Novo Departamento'}
         return render(request, "departamentos/form.html", context)
 
+# Exibe os projetos do departamento
 def lista_projetos(request, id_departamento):
     departamento = recupera_departamento(id_departamento)
     projetos = lista_projetos_departamento(id_departamento)
@@ -37,6 +38,7 @@ def lista_projetos(request, id_departamento):
     
     return render(request, 'departamentos/projetos.html', context)
 
+# Exibe funcionarios do departamento
 def lista_funcionarios(request, id_departamento):
     departamento = recupera_departamento(id_departamento)
     funcionarios = lista_funcionarios_departamento(id_departamento)
@@ -47,6 +49,7 @@ def lista_funcionarios(request, id_departamento):
     }
     return render(request, 'departamentos/funcionarios.html', context)
 
+# Altera informações do departamento
 def edita(request, id_departamento):
     if request.method == "POST":
         form = FormDepartamento(request.POST)

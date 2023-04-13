@@ -66,6 +66,7 @@ def remove_funcionario(request, id_projeto):
         }
         return render(request, 'projetos/form.html', context)
 
+# Atualiza informações do projeto
 def altera_dados(request, id_projeto):
     if request.method == 'POST':
         form = FormProjeto(request.POST)
@@ -82,10 +83,12 @@ def altera_dados(request, id_projeto):
         }
         return render(request, 'projetos/form.html', context)
 
+# Estima o prazo de conclusao
 def calcula_prazo(request, id_projeto):
     calcula_prazo_projeto(id_projeto)
     return HttpResponseRedirect('/projetos')
 
+# Exibe os funcionários que atuam no projeto
 def detalhes_projeto(request, id_projeto):
     funcionarios = recupera_funcionarios_projeto(id_projeto)
     context = {

@@ -1,5 +1,8 @@
+# Biblioteca criada para funções auxiliares não serem executadas direto nas views
+
 from datetime import datetime
 
+# Extrai os dados do formulário de criação de projeto
 def extrai_dados_form_projeto(form):
     informacoes = {
         'nome' : form.cleaned_data['nome'],
@@ -10,6 +13,7 @@ def extrai_dados_form_projeto(form):
     }
     return informacoes
 
+# Retorna, em dias, a diferença absoluta de duas datas
 def data_diferenca_dias(data1, data2):
     data1 = datetime.strptime(data1, "%Y-%m-%d")
     data2 = datetime.strptime(data2, "%Y-%m-%d")

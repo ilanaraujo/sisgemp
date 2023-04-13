@@ -3,7 +3,7 @@
 {% block body %}
 
 {% if departamento %}
-    <h2>Departamento: {{ departamento.nome }}</h2>
+    <h2>Funcionárilos no departamento {{ departamento }}</h2>
     <br>
     {% if funcionarios %}
         <table>
@@ -17,9 +17,9 @@
                 <th>Possui CNH</th>
                 <th>Salário</th>
                 <th>Carga Horária Semanal</th>
-                <th>Horas Livres</th>
-                <th>Data de Criação</th>
-                <th>Data de Atualização</th>
+                <th>Horas Disponíveis</th>
+                <th>Data do Registro</th>
+                <th>Última Atualização</th>
             </tr>
             {% for funcionario in funcionarios %}
             <tr>
@@ -29,19 +29,23 @@
                 <td>{{ funcionario.rg }}</td>
                 <td>{{ funcionario.sexo_id }}</td>
                 <td>{{ funcionario.nascimento }}</td>
-                <td>{{ funcionario.possui_cnh }}</td>
+                {% if funcionario.possui_cnh %}
+                <td>Sim</td>
+                {% else %}
+                <td>Não</td>
+                {% endif %}
                 <td>{{ funcionario.salario }}</td>
                 <td>{{ funcionario.carga_horaria_semanal }}</td>
                 <td>{{ funcionario.horas_livres }}</td>
-                <td>{{ funcionario.data_criacao }}</td>
+                <td>{{ funcionario.data_criacao }}</td>funcionarios
                 <td>{{ funcionario.data_atualizacao }}</td>
             </tr>
             {% endfor %}
         </table>
     {% else %}
-    <h2>Nenhum funcionário no departamento</h2>
+    <h2>Nenhum funcionário registrado no departamento {{ departamento }}</h2>
     {% endif %}
 {% else %}
-    <h2>Departamento não registrado</h2>
+    <h2>ID não corresponde a um departamento registrado</h2>
 {% endif %}
 {% endblock %}

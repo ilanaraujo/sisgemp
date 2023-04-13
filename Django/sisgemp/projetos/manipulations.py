@@ -1,3 +1,5 @@
+# Manipulações no banco. Arquivo separado criado para aumentar a segurança
+
 from .models import Projeto, FuncionarioProjeto
 from departamentos.models import Departamento
 from funcionarios.models import Funcionario
@@ -69,6 +71,7 @@ def altera_dados_projeto(id_projeto, informacoes):
     except:
         print("Erro ao editar dados")
 
+# Estima o prazo
 def calcula_prazo_projeto(id_projeto):
     try:
         funcionarios_projeto = FuncionarioProjeto.objects.filter(projeto = id_projeto)
@@ -96,11 +99,12 @@ def calcula_prazo_projeto(id_projeto):
     except:
         print("Erro ao calcular prazo")
 
+# Exibe em quais projetos cada funcionario está
 def recupera_funcionarios_projeto(id_projeto):
     funcionarios = FuncionarioProjeto.objects.filter(projeto=id_projeto)
     return funcionarios    
 
-
+# Recupera um projeto do banco
 def recupera_projeto(id_projeto):
     projeto = Projeto.objects.get(id=id_projeto)
     return projeto

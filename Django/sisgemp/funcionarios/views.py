@@ -4,6 +4,7 @@ from .manipulations import cadastra_funcionario, lista_projetos_funcionario, lis
 from .forms import FormFuncionario
 from .utils import extrai_dados_form_funcionario
 
+# Exibe todos os funcionarios da empresa
 def index(request):
     funcionarios = lista_todos_funcionarios()
     context = {
@@ -12,6 +13,7 @@ def index(request):
     }
     return render(request, 'funcionarios/index.html', context)
 
+# Cadastra um novo funcionario
 def cadastro(request):
     if request.method == "POST":
         form = FormFuncionario(request.POST)
@@ -27,6 +29,7 @@ def cadastro(request):
             'titulo':'Cadastro de Funcionário'}
         return render(request, "funcionarios/form.html", context)
 
+# Atualiza cadastro de um funcionário
 def edita(request, id_funcionario):
     if request.method == "POST":
         form = FormFuncionario(request.POST)
@@ -57,6 +60,7 @@ def edita(request, id_funcionario):
             'titulo':'Edita Funcionário'}
         return render(request, "funcionarios/form.html", context)
 
+# Exibe os projetos nos quais o funcionario atua
 def lista_projetos(request, id_funcionario):
     projetos = lista_projetos_funcionario(id_funcionario)
     projetos_supervisionados = lista_projetos_supervisionados_funcionario(id_funcionario)

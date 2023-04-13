@@ -1,3 +1,5 @@
+# Manipulações no banco. Arquivo separado criado para aumentar a segurança
+
 from .models import Departamento
 from datetime import datetime
 from funcionarios.models import Funcionario
@@ -52,6 +54,7 @@ def lista_projetos_departamento(id_departamento):
     except:
         return None
 
+# Atualiza informações do departamento
 def edita_departamento(id_departamento, info):
     departamento = Departamento.objects.get(id=id_departamento)
     departamento.nome = info['nome']

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-iid4dsj)0jjoz**oq(dg%blu+kw&ms%z8t!9qit10*2gq88hj5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,15 +78,8 @@ WSGI_APPLICATION = 'sisgemp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'empresa',
-        'USER' : 'root',
-        'PASSWORD' : 'senharoot',
-        'HOST' : '127.0.0.1',
-        'PORT' : 3306,
-        'OPTIONS' : {
-            'init_command' : "CREATE DATABASE IF NOT EXISTS empresa; USE empresa;"
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

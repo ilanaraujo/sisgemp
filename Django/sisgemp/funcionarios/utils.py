@@ -1,3 +1,6 @@
+# Biblioteca criada para funções auxiliares não serem executadas direto nas views
+
+# Extrai informação do formulário de cadastro de funcionario
 def extrai_dados_form_funcionario(formulario): 
     infos = {
     'nome' : formulario.cleaned_data["nome"],

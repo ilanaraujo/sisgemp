@@ -17,9 +17,11 @@
         </tr>
         {% endfor %}
     </table>
+    <br><br><br><br><br>
     {% endif %}
     {% if projetos_supervisionados %}
     <table>
+        <tr>Projetos Supervisionados</tr>
         <tr>
             <th>Projeto</th>
             <th>Horas Dedicadas</th>
@@ -33,7 +35,7 @@
     </table>
     {% endif %}
 {% else %}
-    <h2>Funcionário não está em nenhum projeto</h2>
+    <h2>Funcionário não está inserido em nenhum projeto</h2>
 {% endif %}
 
 {% endblock %}
