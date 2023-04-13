@@ -64,3 +64,5 @@ As tabelas do banco são semelhantes às do sistema em MySQL.
 Na pasta de cada aplicação existe um arquivo `manipulations.py`, responsável por fazer as manipulações no banco. Usá-lo ao invés de fazer nas views torna o sistema menos vulnerável. Além disso, támbém tem o arquivo `utils.py`, responsável por guardar funções auxiliares. Colocá-las no arquivo de manipulação ou de views deixaria o código mais desorganizado.
 
 Testes foram executados localmente, e o sistema teve o comportamento esperado.
+  
+
