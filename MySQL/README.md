@@ -47,5 +47,5 @@ Após confirmar que o contêiner está online, execute os scripts na pasta `/MyS
 
 - `cria_procedures_json.sql`: Cria procedures relacionadas às criadas anteriormente. Estas recebem um JSON, extraem seus dados e chamam a procedure correspondente.
 
-Pronto, o sistema está completo. Foram criados scripts de Testes, disponíveis [aqui](https://github.com/ilanaraujo/sisgemp/tree/main/MySQL/scripts/testes)
+Pronto, o sistema está completo. Foram criados scripts de Testes, disponíveis [aqui](https://github.com/ilanaraujo/sisgemp/tree/main/MySQL/scripts/testes). A pasta também possui capturas de telas dos resultados.
   
