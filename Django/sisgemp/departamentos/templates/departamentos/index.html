@@ -1,0 +1,25 @@
+{% extends 'departamentos/base.html' %}
+
+{% block body %}
+
+{% if departamentos %}
+    <table>
+        <tr>
+            <th> ID </th>
+            <th> Nome </th>
+            <th> Data Criacao </th>
+            <th> Data Atualizacao </th>
+        </tr>
+        {% for departamento in departamentos %}
+            <tr>
+                <td>{{ departamento.id }}</td>
+                <td>{{ departamento.nome }}</td>
+                <td>{{ departamento.data_criacao }}</td>
+                <td>{{ departamento.data_atualizacao }}</td>
+            </tr>
+        {% endfor %}
+{% else %}
+<h2> Nenhum departamento registrado </h2>
+{% endif %}
+
+{% endblock %}

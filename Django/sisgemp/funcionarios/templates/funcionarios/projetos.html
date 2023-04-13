@@ -1,0 +1,39 @@
+{% extends 'funcionarios/base.html' %}
+
+{% block body %}
+
+{% if projetos or projetos_supervisionados %}
+    {% if projetos %}
+    <table>
+        <tr> Projetos </tr>
+        <tr>
+            <th>Projeto</th>
+            <th>Horas Dedicadas</th>
+        </tr>
+        {% for projeto in projetos %}
+        <tr>
+            <td>projeto.projeto</td>
+            <td>projeto.horas</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    {% if projetos_supervisionados %}
+    <table>
+        <tr>
+            <th>Projeto</th>
+            <th>Horas Dedicadas</th>
+        </tr>
+        {% for projeto_supervisionado in projetos_supervisionados %}
+        <tr>
+            <td>{{ projeto_supervisionado.projeto }}</td>
+            <tr>{{ projeto_supervisionado.horas_supervisao }}</tr>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% else %}
+    <h2>Funcionário não está em nenhum projeto</h2>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'projetos/base.html' %}
+
+{% block body %}
+
+{% if funcionarios %}
+    <table>
+        <tr>
+            <th>Funcionario</th>
+            <th>Horas Dedicadas</th>
+        </tr>
+        {% for funcionario in funcionarios %}
+        <tr>
+            <td>{{ funcionario.funcionario }}</td>
+            <td>{{ funcionario.horas_trabalhadas }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+{% else %}
+<h2>Projeto sem funcionários</h2>
+{% endif %}
+
+{% endblock %}

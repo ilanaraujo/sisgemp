@@ -1,0 +1,43 @@
+{% extends 'funcionarios/base.html' %}
+
+{% block body %}
+{% if funcionarios %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>RG</th>
+            <th>Sexo</th>
+            <th>Nascimento</th>
+            <th>Possui CNH</th>
+            <th>Salário</th>
+            <th>Departamento</th>
+            <th>Carga Horária Semanal</th>
+            <th>Horas Livres</th>
+            <th>Registro</th>
+            <th>Última Alteração</th>
+        </tr>
+    {% for funcionario in funcionarios %}
+        <tr>
+            <td>{{ funcionario.id }}</td>
+            <td>{{ funcionario.nome }}</td>
+            <td>{{ funcionario.cpf }}</td>
+            <td>{{ funcionario.rg }}</td>
+            <td>{{ funcionario.sexo }}</td>
+            <td>{{ funcionario.nascimento }}</td>
+            <td>{{ funcionario.possui_cnh }}</td>
+            <td>{{ funcionario.salario }}</td>
+            <td>{{ funcionario.departamento }}</td>
+            <td>{{ funcionario.carga_horaria_semanal }}</td>
+            <td>{{ funcionario.horas_livres }}</td>
+            <td>{{ funcionario.data_criacao }}</td>
+            <td>{{ funcionario.data_atualizacao }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <h1>Sem funcionários</h1>
+{% endif %}
+
+{% endblock %}

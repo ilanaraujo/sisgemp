@@ -1,0 +1,46 @@
+{% extends 'departamentos/base.html' %}
+
+{% block body %}
+
+{% if departamento %}
+    {% if projetos %}
+        <div>
+            Departamento: {{departamento.nome}}
+        </div>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Horas Necessárias</th>
+                <th>Horas Realizadas</th>
+                <th>Prazo Estimado</th>
+                <th>Data Último Calculo Prazo</th>
+                <th>Supervisor</th>
+                <th>Horas de Supervisão</th>
+                <th>Data Criação</th>
+                <th>Data Atualização</th>
+            </tr>
+            {% for projeto in projetos %}
+            <tr>
+                <td>{{ projeto.id }}</td>
+                <td>{{ projeto.nome }}</td>
+                <td>{{ projeto.horas_necessarias }}</td>
+                <td>{{ projeto.horas_realizadas }}</td>
+                <td>{{ projeto.prazo_estimado }}</td>
+                <td>{{ projeto.ultimo_calculo_horas }}</td>
+                <td>{{ projeto.supervisor_id }}</td>
+                <td>{{ projeto.horas_supervisao }}</td>
+                <td>{{ projeto.data_criacao }}o</td>
+                <td>{{ projeto.data_atualizacao }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h2>Departamento sem projetos</h2>
+    {% endif %}
+{% else %}
+    Departamento não existe
+{% endif %}
+
+{% endblock %}

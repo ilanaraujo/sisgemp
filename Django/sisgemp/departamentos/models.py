@@ -8,5 +8,6 @@ class Departamento(models.Model):
     nome = models.CharField(max_length=50, unique=True)
     data_criacao = models.DateTimeField(default=datetime.now())
     data_atualizacao = models.DateTimeField(default=datetime.now())
-    data_criacao = models.DateTimeField(default=datetime.now())
-    data_atualizacao = models.DateTimeField(default=datetime.now())
+
+    def __str__(self):
+        return self.nome
