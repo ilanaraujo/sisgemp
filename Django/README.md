@@ -17,11 +17,17 @@ Para iniciar o sistema, vá para a pasta `/Django/sisgemp/` e execute `$ python3
 
 Antes de uśa-lo, abra o Shell do django com `$ python3 manage.py shell` e execute os seguintes comandos:
 `from funcionarios.models import Sexo`
+
 `sexo1 = Sexo(sexo='Feminino')`
+
 `sexo1.save()`
+
 `sexo2 = Sexo(sexo='Masculino')`
+
 `sexo2.save()`
+
 `sexo3 = Sexo(sexo='Outros')`
+
 `sexo3.save()`
 
 É necesário fazer isso para inserir as opções de sexo no sistema. Caso não o faça, não é possível cadastrar funcionários (que dependem desse campo) e nem criar projetos (que dependem dos funcionários).
