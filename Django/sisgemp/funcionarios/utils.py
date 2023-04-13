@@ -1,4 +1,6 @@
 # Biblioteca criada para funções auxiliares não serem executadas direto nas views
+from departamentos.manipulations import lista_todos_departamentos
+
 
 # Extrai informação do formulário de cadastro de funcionario
 def extrai_dados_form_funcionario(formulario): 
@@ -14,3 +16,14 @@ def extrai_dados_form_funcionario(formulario):
     'carga_horaria_semanal' : formulario.cleaned_data["carga_horaria_semanal"]
     }
     return infos
+
+def cria_lista_departamentos():
+    departamentos = lista_todos_departamentos()
+    lista_departamentos = list()
+    for departamento in departamentos:
+        item_lista = (
+            departamento.id,
+            departamento
+        )
+        lista_departamentos.append(item_lista)
+    return lista_departamentos

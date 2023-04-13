@@ -5,10 +5,14 @@ from .models import Funcionario, Sexo
 from projetos.models import Projeto, FuncionarioProjeto
 from departamentos.models import Departamento
 
+# Cadastra um novo funcionário no banco
 def cadastra_funcionario(json_info):
+    
+    # Chaves estrangeiras
     sexo_funcionario = Sexo.objects.get(id=json_info["sexo_id"])
     dpto_funcionario = Departamento.objects.get(id=json_info["departamento_id"])
     
+    # Informações 
     novo_funcionario = Funcionario(
         nome                    = json_info['nome'],
         cpf                     = json_info['cpf'],
@@ -23,12 +27,14 @@ def cadastra_funcionario(json_info):
         data_criacao            = datetime.now(),
         data_atualizacao        = datetime.now()
     )
+    
+    #Tenta inserir o funcionário no banco. Caso não seja possível (ex: nome repetido), imprime a mensagem
     try:
         novo_funcionario.save()
     except:
         print("Não foi possível cadastrar o novo funcionario")
 
-# Recupera um funcionário do banco
+# Recupera um funcionário do banco. Se não conseguir, retorna None
 def recupera_funcionario(id_funcionario):
     try:
         funcionario = Funcionario.objects.get(id=id_funcionario)
@@ -41,7 +47,7 @@ def lista_todos_funcionarios():
     funcionarios = Funcionario.objects.all()
     return funcionarios
 
-# Recupera projetos que o funcionario atua
+# Recupera projetos que o funcionario atua. Se não conseguir, retorna None
 def lista_projetos_funcionario(id_funcionario):
     try:
         id_projetos = FuncionarioProjeto.objects.filter(funcionario = id_funcionario)
@@ -63,12 +69,16 @@ def lista_projetos_supervisionados_funcionario(id_funcionario):
 
 # Atualzia cadastro
 def edita_funcionario(id_funcionario, json_info):
+    
+    # Variáveis que servirão para verificar se o funcionário tem horas livres caso a carga horária seja reduzida
     horas_livres_anteriores = Funcionario.objects.get(id=id_funcionario).horas_livres
     diferenca_carga_horaria = json_info['carga_horaria_semanal'] - horas_livres_anteriores
-    
+
+    # Chaves estrangeiras
     sexo_funcionario = Sexo.objects.get(id=json_info["sexo_id"])
     dpto_funcionario = Departamento.objects.get(id=json_info["departamento_id"])
     
+    # Caso o funcionário tenha horas livres o suficiente para reduzir a carga horária
     if (horas_livres_anteriores + diferenca_carga_horaria) >= 0:
         funcionario = Funcionario.objects.get(id=id_funcionario)
         funcionario.nome                    = json_info['nome']
@@ -83,5 +93,7 @@ def edita_funcionario(id_funcionario, json_info):
         funcionario.horas_livres            = horas_livres_anteriores + diferenca_carga_horaria
         funcionario.data_atualizacao        = datetime.now()
         funcionario.save()
+    
+    # Caso não tenha
     else:
         print("Carga Horária menor do que a demanda de horas do funcionário")

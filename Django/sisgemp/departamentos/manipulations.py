@@ -24,25 +24,37 @@ def cria_novo_departamento(json_info):
 
 # Recupera informações do departamento
 def recupera_departamento(id_departamento):
+    
+    # Recupera, se possível, o departamento
     try:
         departamento = Departamento.objects.get(id=id_departamento)
         return departamento
+    
+    # Caso não seja possível
     except:
         return None
 
 # Lista todos os departamentos da Empresa
 def lista_todos_departamentos():
+    
+    # Busca os departamentos
     try:
         departamentos = Departamento.objects.all().order_by("id")
         return departamentos
+
+    # Caso a empresa ainda não tenha departamentos
     except:
         return None
 
 # Lista todos os funcionários do departamento
 def lista_funcionarios_departamento(id_departamento):
+    
+    # Busca os funcionários daquele departamento
     try:
         funcionarios_departamento = Funcionario.objects.filter(departamento_id=id_departamento)
         return funcionarios_departamento
+
+    # Caso não seja possível
     except:
         return None
 

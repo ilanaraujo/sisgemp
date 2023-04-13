@@ -3,7 +3,8 @@
 {% block body %}
 
 {% if funcionarios %}
-    <table>
+    <h2>Funcionários que trabalham no projeto {{ projeto }}</h2>
+    <table border="1" style="border: 1px solid">
         <tr>
             <th>Funcionario</th>
             <th>Horas Dedicadas</th>
@@ -17,7 +18,7 @@
 
     </table>
 {% else %}
-<h2>Atualmente nenhum funcionário trabalha nesse projeto</h2>
+<h2>Atualmente nenhum funcionário trabalha no projeto {{ projeto }}</h2>
 {% endif %}
 
 {% endblock %}

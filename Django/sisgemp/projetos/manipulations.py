@@ -99,7 +99,7 @@ def calcula_prazo_projeto(id_projeto):
     except:
         print("Erro ao calcular prazo")
 
-# Exibe em quais projetos cada funcionario está
+# Exibe funcionários daquele projeto
 def recupera_funcionarios_projeto(id_projeto):
     funcionarios = FuncionarioProjeto.objects.filter(projeto=id_projeto)
     return funcionarios    

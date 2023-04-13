@@ -64,9 +64,11 @@ def edita(request, id_funcionario):
 def lista_projetos(request, id_funcionario):
     projetos = lista_projetos_funcionario(id_funcionario)
     projetos_supervisionados = lista_projetos_supervisionados_funcionario(id_funcionario)
+    funcionario = recupera_funcionario(id_funcionario)
     context = {
         'titulo' : 'Projetos do Funcionário',
         'projetos' : projetos,
-        'projetos_supervisionados' : projetos_supervisionados
+        'projetos_supervisionados' : projetos_supervisionados,
+        'funcionario' : funcionario
     }
     return render(request, 'funcionarios/projetos.html', context)

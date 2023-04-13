@@ -4,7 +4,8 @@
 
 {% if projetos or projetos_supervisionados %}
     {% if projetos %}
-    <table>
+    <h2> Projetos que {{ funcionario }} atua</h2>
+    <table border="1" style="border: 1px solid">
         <tr> Projetos </tr>
         <tr>
             <th>Projeto</th>
@@ -35,7 +36,7 @@
     </table>
     {% endif %}
 {% else %}
-    <h2>Funcionário não está inserido em nenhum projeto</h2>
+    <h1>{{ funcionario }} não atua em nenhum projeto</h1>
 {% endif %}
 
 {% endblock %}

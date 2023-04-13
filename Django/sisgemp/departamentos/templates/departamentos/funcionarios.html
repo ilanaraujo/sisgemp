@@ -3,10 +3,11 @@
 {% block body %}
 
 {% if departamento %}
-    <h2>Funcionárilos no departamento {{ departamento }}</h2>
-    <br>
+
     {% if funcionarios %}
-        <table>
+        <h2>Funcionários no departamento {{ departamento }}</h2>
+        <br>
+        <table border="1" style="border: 1px solid">
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
